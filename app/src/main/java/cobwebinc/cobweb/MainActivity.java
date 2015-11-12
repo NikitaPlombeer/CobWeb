@@ -17,6 +17,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import cobwebinc.cobweb.twitter.Const;
 import cobwebinc.cobweb.twitter.MyTwitter;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Const.init(this);
 
         Typeface face = Typeface.createFromAsset(getAssets(), "HelveticaNeueCyr-Light.otf");
         TextView tv = (TextView) findViewById(R.id.textView);
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         twitter = new MyTwitter(this);
         twitter.login();
+
     }
 
     @Override
@@ -59,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onLogin (View view) {
-        twitter.sendStatus("hello");
-        Intent intent = new Intent(MainActivity.this, Login.class);
+//        twitter.getHomeTimeLine();
+        Intent intent = new Intent(MainActivity.this, LentaActivity.class);
         startActivity(intent);
     }
 

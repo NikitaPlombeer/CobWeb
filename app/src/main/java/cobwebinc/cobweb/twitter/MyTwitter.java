@@ -10,6 +10,11 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import twitter4j.Paging;
+import twitter4j.ResponseList;
+import twitter4j.Status;
 import twitter4j.StatusUpdate;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -237,6 +242,34 @@ public class MyTwitter {
             Toast.makeText(activity, "Posted to Twitter!", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    public Twitter getTwitter(){
+        ConfigurationBuilder builder = new ConfigurationBuilder();
+        builder.setOAuthConsumerKey(consumerKey);
+        builder.setOAuthConsumerSecret(consumerSecret);
+        // Access Token
+        String access_token = mSharedPreferences.getString(Const.PREF_KEY_OAUTH_TOKEN, "");
+        // Access Token Secret
+        String access_token_secret = mSharedPreferences.getString(Const.PREF_KEY_OAUTH_SECRET, "");
+        AccessToken accessToken = new AccessToken(access_token, access_token_secret);
+
+        return new TwitterFactory(builder.build()).getInstance(accessToken);
+    }
+    public  ResponseList<Status> getHomeTimeLine(){
+        try {
+
+            Twitter twitter = getTwitter();
+            ResponseList<Status> statuses =  twitter.getHomeTimeline(new Paging(1));
+            return statuses;
+//            for (int i = 0; i < statuses.size(); i++) {
+//                Log.d("twitter", statuses.get(i).getUser().getName() + ": "+statuses.get(i).getText());
+//                statuses.get(i).getUser().getProfileImageURL();
+//            }
+        } catch (TwitterException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public boolean isLoggedIn() {

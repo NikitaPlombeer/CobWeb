@@ -105,6 +105,7 @@
     <orderEntry type="library" exported="" name="jna-platform-4.1.0" level="project" />
     <orderEntry type="library" exported="" name="support-v4-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="twitter4j-core-4.0.4" level="project" />
+    <orderEntry type="library" exported="" name="facebook4j-core-2.3.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="commons-codec-1.9" level="project" />

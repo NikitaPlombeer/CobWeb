@@ -1,5 +1,9 @@
 package cobwebinc.cobweb.twitter;
 
+import android.app.Activity;
+import android.graphics.Point;
+import android.view.Display;
+
 /**
  * Created by Никита on 11.11.2015.
  */
@@ -20,4 +24,15 @@ public class Const {
     public static final String URL_TWITTER_AUTH = "auth_url";
     public static final String URL_TWITTER_OAUTH_VERIFIER = "oauth_verifier";
     public  static final String URL_TWITTER_OAUTH_TOKEN = "oauth_token";
+
+    public static int SCREEN_WIDTH;
+    public static int SCREEN_HEIGHT;
+
+    public static void init(Activity activity){
+        Display display = activity.getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        SCREEN_WIDTH = size.x;
+        SCREEN_HEIGHT = size.y;
+    }
 }
