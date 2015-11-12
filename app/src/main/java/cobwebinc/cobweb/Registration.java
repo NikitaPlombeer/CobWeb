@@ -64,8 +64,7 @@ public class Registration extends AppCompatActivity {
 
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev)
-    {
+    public boolean dispatchTouchEvent(MotionEvent ev){
         View v = getCurrentFocus();
 
         if (v != null &&
@@ -87,10 +86,8 @@ public class Registration extends AppCompatActivity {
     }
 
 
-    public static void hideKeyboard(Registration activity)
-    {
-        if (activity != null && activity.getWindow() != null && activity.getWindow().getDecorView() != null)
-        {
+    public static void hideKeyboard(Registration activity){
+        if (activity != null && activity.getWindow() != null && activity.getWindow().getDecorView() != null){
             InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(activity.getWindow().getDecorView().getWindowToken(), 0);
         }
@@ -122,11 +119,6 @@ public class Registration extends AppCompatActivity {
     }
 
 
-
-
-
-
-
     class RequestTask extends AsyncTask<String, String, String> {
 
         @Override
@@ -134,25 +126,29 @@ public class Registration extends AppCompatActivity {
             String st="Nice!";
             String st2="Error-Login";
             try {
-//создаем запрос на сервер
+                //создаем запрос на сервер
                 DefaultHttpClient hc = new DefaultHttpClient();
                 ResponseHandler<String> res = new BasicResponseHandler();
-//он у нас будет посылать post запрос
+
+                //он у нас будет посылать post запрос
                 HttpPost postMethod = new HttpPost(params[0]);
-//будем передавать два параметра
+
+                //будем передавать два параметра
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
-//передаем параметры из наших текстбоксов
-//лоигн
+                //передаем параметры из наших текстбоксов
+
+                //логин
                 nameValuePairs.add(new BasicNameValuePair("login", s1));
-//пароль
+
+                //пароль
                 nameValuePairs.add(new BasicNameValuePair("password",s2));
 
                 nameValuePairs.add(new BasicNameValuePair("email",s4));
-//собераем их вместе и посылаем на сервер
+                //собераем их вместе и посылаем на сервер
                 postMethod.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-//получаем ответ от сервера
+                //получаем ответ от сервера
                 String response = hc.execute(postMethod, res);
-//посылаем на вторую активность полученные параметры
+                //посылаем на вторую активность полученные параметры
                 Log.v("Registration", response);
                 if (response.equals(st)){
                     Intent intent=new Intent(Registration.this,Verify.class);

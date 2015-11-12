@@ -3,10 +3,10 @@
     android:shareInterpolator="false" >
 
     <translate
-        android:duration="75"
+        android:duration="60"
         android:toXDelta="-15"
         android:repeatMode="reverse"
-        android:repeatCount="13"/>
+        android:repeatCount="7"/>
 
 
 </set>

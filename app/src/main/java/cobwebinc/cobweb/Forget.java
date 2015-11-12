@@ -60,8 +60,7 @@ public class Forget extends AppCompatActivity {
 
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev)
-    {
+    public boolean dispatchTouchEvent(MotionEvent ev){
         View v = getCurrentFocus();
 
         if (v != null &&
@@ -97,35 +96,33 @@ public class Forget extends AppCompatActivity {
         protected String doInBackground(String... params) {
             String st="Nice!Nice!";
             try {
-//создаем запрос на сервер
+                //создаем запрос на сервер
                 DefaultHttpClient hc = new DefaultHttpClient();
                 ResponseHandler<String> res = new BasicResponseHandler();
-//он у нас будет посылать post запрос
-                HttpPost postMethod = new HttpPost(params[0]);
-//будем передавать два параметра
-                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-//передаем параметры из наших текстбоксов
-//лоигн
 
+                //он у нас будет посылать post запрос
+                HttpPost postMethod = new HttpPost(params[0]);
+
+                //будем передавать два параметра
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+
+                //передаем параметры из наших текстбоксов
+                //логин
                 nameValuePairs.add(new BasicNameValuePair("email",s1));
-//собераем их вместе и посылаем на сервер
+                //собераем их вместе и посылаем на сервер
                 postMethod.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-//получаем ответ от сервера
+                //получаем ответ от сервера
                 String response = hc.execute(postMethod, res);
-//посылаем на вторую активность полученные параметры
+                //посылаем на вторую активность полученные параметры
                 Log.v("Forget", response);
                 if (response.equals(st)){
-                    Intent intent=new Intent(Forget.this,Login.class);
+                    Intent intent = new Intent(Forget.this, Login.class);
                     startActivity(intent);
                 } else {
                     runOnUiThread(runn1);
                     TimeUnit.SECONDS.sleep(3);
                     runOnUiThread(runn2);
                 }
-
-
-
-
 
             } catch (Exception e) {
                 System.out.println("Exp=" + e);
